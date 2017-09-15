@@ -35,10 +35,11 @@ app.param('name', function(request, response, next){
   next();
 });
 app.get('/cities', function(request, response){
+
   if(request.query.limit>cities.length){
-    response.status(404).json("This exceeds the length of the cities array");
+    response.status(400).json("This exceeds the length of the cities array");
   }else if(request.query.limit>0){
-    response.json(cities.slice(0, request.query.limit));
+    response.json(Object.keys(cities).slice(0, request.query.limit));
   }else{
     response.json(Object.keys(cities));
   }
@@ -47,8 +48,13 @@ app.get('/cities', function(request, response){
 
 //creates name parameter on the response object
 app.get('/cities/:name', function(request, response){
-  var state=cities[request.cityName];
-  response.json(state);
+  if(!cities[request.cityName]){
+    response.status(404).json("This city was not found");
+  }else{
+    var state=cities[request.cityName];
+    response.json(state);
+  }
+
 
 });
 
