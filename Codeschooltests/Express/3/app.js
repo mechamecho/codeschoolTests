@@ -36,7 +36,7 @@ app.param('name', function(request, response, next){
 });
 app.get('/cities', function(request, response){
 
-  if(request.query.limit>cities.length){
+  if(request.query.limit>Object.keys(cities).length){
     response.status(400).json("This exceeds the length of the cities array");
   }else if(request.query.limit>0){
     response.json(Object.keys(cities).slice(0, request.query.limit));
