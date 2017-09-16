@@ -16,8 +16,12 @@ Page should update with new info
 
 var express=require('express');
 var app=express();
-app.use(express.static('public'));
+var bodyParser=require('body-parser');
+/*forces the use of the native
+querystring Node library*/
+var parseUrlencoded= bodyParser.urlencoded({extended: false});
 
+app.use(express.static('public'));
 /*serve these files in the root directory, app.use replaces this*/
 // app.get('/', function(request, response) {
 //  response.sendFile(__dirname + '/public/index.html');
@@ -53,6 +57,20 @@ app.get('/cities/:name', function(request, response){
     var state=cities[request.cityName];
     response.json(state);
   }
+
+
+});
+
+//creating a post route
+//parseUrlencoded will run first
+app.post('/cities', parseUrlencoded, function(request, response){
+  //returns form data
+  var newCity=request.body;
+    //adds new city to the cities object
+    cities[newCity.name]=newCity.description;
+    //sets the status to created status , and responds with newCity.name
+    response.status(201).json(newCity.name);
+
 
 
 });

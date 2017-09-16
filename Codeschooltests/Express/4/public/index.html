@@ -7,23 +7,22 @@
   </head>
   <body>
     <h1>Cities</h1>
-
-    <form class="add-city" method="post">
+<!--adding form to index.html-->
+    <form class="add-city" action='/cities' method="POST">
       <legend>New City</legend>
-      <input type="text" name="name" placeholder="Name"><br>
-      <input type="text" name="description" placeholder="Description">
+      <input type="text" name="name" minlength= '4' placeholder="Name" required><br>
+      <input type="text" name="description" minlength='2' placeholder="Description" required>
       <input type="Submit">
 
     </form>
 
     <form class="form-selection" method="get">
-      <select class="selection">
+      <ul class="selection">
 
-      </select>
+      </ul>
 
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="client.js" charset="utf-8"></script>
-
   </body>
 </html>
