@@ -70,11 +70,14 @@ app.post('/cities', parseUrlencoded, function(request, response){
     cities[newCity.name]=newCity.description;
     //sets the status to created status , and responds with newCity.name
     response.status(201).json(newCity.name);
-
-
-
 });
 
+app.delete('/cities/:name', function(request, response){
+  //removes entry from the cities object cityName was set in app.params
+  delete cities[request.cityName];
+  //sendStatus sets both the status code and the response body
+  response.sendStatus(200);
+})
 
 
 
