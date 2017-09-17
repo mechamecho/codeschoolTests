@@ -1,5 +1,5 @@
 {
-  "name": "5",
+  "name": "4",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.1",
     "express": "^4.15.4"
   }
 }
